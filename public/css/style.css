@@ -5,6 +5,9 @@ body{
     min-height: 100vh;
 }
 
+.container{
+    flex: 1;
+}
 
 .navbar{
     height: 5rem;
@@ -20,12 +23,12 @@ body{
     color: #222222 !important;
 }
 
-.f-info-links a{
+.f-info-links {
     text-decoration: none;
     color: #222222 ; */
 }
 
-.f-info-links a:hover{
+.f-info-links :hover{
     text-decoration: underline;
 }
 
@@ -83,4 +86,31 @@ body{
 .card-img-overlay:hover{
     opacity: 0.2;
     background-color: white;
+}
+
+/* Add page */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Edit Page */
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Show immage */
+.show-img{
+   height: 30vh; 
+
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
 }
