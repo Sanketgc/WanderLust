@@ -23,9 +23,27 @@ body{
     color: #222222 !important;
 }
 
-.f-info-links {
+.f-info-links:hover{
+    text-decoration: underline;
+    text-decoration-color: skyblue;
+}
+
+#terms{
+    margin-left: 10px;
     text-decoration: none;
-    color: #222222 ; */
+}
+
+#privacy{
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+#terms :hover{
+    text-decoration: underline;
+}
+
+#privacy :hover{
+    text-decoration: underline;
 }
 
 .f-info-links :hover{
@@ -37,11 +55,17 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
 .f-info-socials i {
+    margin-top: 10px;
     font-size: 1.2rem;
     margin-right: 1rem;
+}
+
+.f-info-socials i:hover{
+    color: blue;
 }
 
 .f-info {
