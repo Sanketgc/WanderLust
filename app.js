@@ -127,8 +127,8 @@ app.all("*", (req, res, next) =>{
 })
 
 app.use((err, req, res, next) => {
-    let {statusCode, message} =err;
-    re.render("listings/error.ejs");
+    let {statusCode, message} = err;
+    res.render("listings/error.ejs",{err});
     // res.status(statusCode).send(message);
 });
 
