@@ -96,30 +96,6 @@ const sampleListings = [
       country: "United States",
     },
     {
-      title: "Ski-In/Ski-Out Chalet",
-      description:
-        "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
-      image: {
-        filename: "listingimage",
-        url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-      },
-      price: 3000,
-      location: "Verbier",
-      country: "Switzerland",
-    },
-    {
-      title: "Safari Lodge in the Serengeti",
-      description:
-        "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
-      image: {
-        filename: "listingimage",
-        url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-      },
-      price: 4000,
-      location: "Serengeti National Park",
-      country: "Tanzania",
-    },
-    {
       title: "Historic Canal House",
       description:
         "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
@@ -346,6 +322,28 @@ const sampleListings = [
       price: 1800,
       location: "Costa Rica",
       country: "Costa Rica",
+    },
+     {
+      title: "Ski-In/Ski-Out Chalet",
+      description:
+        "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
+      image: {
+        url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      },
+      price: 3000,
+      location: "Verbier",
+      country: "Switzerland",
+    },
+    {
+      title: "Safari Lodge in the Serengeti",
+      description:
+        "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
+      image: {
+        url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      },
+      price: 4000,
+      location: "Serengeti National Park",
+      country: "Tanzania",
     },
   ];
   

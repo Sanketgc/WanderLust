@@ -9,6 +9,8 @@ const wrapAsync = require("./Utils/wraoAsync.js");
 const ExpressError =require("./Utils/ExpressError.js");
 const { listingSchema } = require("./schema.js");
 const { error } = require("console");
+const Review= require("./models/review.js");
+const { reviewSchema } = require("./schema.js");
 
 
 const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
@@ -38,7 +40,17 @@ app.get("/", (req, res) =>{
 const validateListing = (req, res, next)=>{
     let {error}=listingSchema.validate(req.body);
     if(error){
-        let errmsg= error.details.map((el) => el.message).join(",");
+        let errmsg= error.details.map(el => el.message).join(",");
+        throw new ExpressError(404, errmsg);
+    } else{
+        next();
+    }
+}
+
+const validatereview = (req, res, next)=>{
+    let {error}=reviewSchema.validate(req.body);
+    if(error){
+        let errmsg= error.details.map(el => el.message).join(",");
         throw new ExpressError(404, errmsg);
     } else{
         next();
@@ -59,10 +71,9 @@ app.get("/listings/new", (req, res) =>{
 
 //SHOW ROUTE
 app.get("/listings/:id", 
-    validateListing,
     wrapAsync(async(req, res) =>{
     let {id}= req.params;
-    const listing= await Listing.findById(id);
+    const listing= await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", {listing});
 }));
 
@@ -103,14 +114,27 @@ app.delete("/listings/:id", wrapAsync(async (req, res) => {
     res.redirect("/listings");
 }));
 
-// app.all("*", (req, res, next) =>{
-//     next(new ExpressError(404, "Page not found"));
-// });
+//REVIEWS
+
+app.post("/listings/:id/reviews",
+     validatereview, 
+     wrapAsync( async (req, res) => {
+   let listing= await Listing.findById(req.params.id);
+   let newreview =new Review(req.body.review);
+
+   listing.reviews.push(newreview);
+
+   await newreview.save();
+   await listing.save();
+
+    res.redirect(`/listings/${listing._id}`);
+}));
 
 app.use((err, req, res, next) => {
     let {statusCode= 500, message ="Something went wrong"}  = err ;
     res.status(statusCode).render("listings/error.ejs", { err });
 });
+
 
 app.listen(8080, ()=> {
     // console.log("server is listening");

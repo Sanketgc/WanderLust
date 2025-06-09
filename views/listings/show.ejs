@@ -1,6 +1,6 @@
 <% layout("/layout/boilerplate") %>
 <div class="row mt-3">
-<div class="col-8 offset-2 ">
+<div class="col-8 offset-3 ">
     <h3><%= listing.title %></h3>
 </div>
     <div class="card col-6 offset-3 show-card" >
@@ -24,24 +24,65 @@
         >Edit </a>
     <form method="POST" action="/listings/<%= listing._id%>?_method=Delete">
     <button class="btn btn-dark mt-2 offset-5">Delete </button>
+    </form>
 </div>
 
-<div class="col-8 offset-3">
+<div class="col-8 offset-3 mb-3">
+    <hr/>
     <h4>Leave A Review</h4>
-    <form >
-        <div>
-        <label for="rating">Rating</label>
-        <input type="range" min="1", max="5" id="rating" name="review[rating]">
+    <form action="/listings/<%= listing.id  %>/reviews" method="POST" novalidate class="needs-validation">
+        <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input class="form-range" type="range" min="1", max="5" id="rating" name="review[rating]">
         </div>
-        <div>
-        <label for="comment">Comments</label>
-        <textarea id="comment" name="review[comment]" cols="30" rows="10"></textarea>
+        <div class="mb-3 mt-3">
+        <label for="comment" cla ss="form-label">Comments</label>
+        <textarea  
+        class="form-control"  id="comment" name="review[comment]" cols="30" 
+        rows="5"
+        required
+        ></textarea>
+        <div class="invalid-feedback">Please add some comment for review</div>
         </div>
+        <button  class="btn btn-outline-dark">Submit</button>
     </form>
 
+<hr />
+<h4>All Reviews</h4>
+<ul>
+<% for(review of listing.reviews) { %> 
+    <li><%= review.comment %> <%= review.rating %> stars </li>
+    <% } %>
+    </ul>
+
+    <div ></div>
+
 </div>
-</form>
 </div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+
 
 
 
