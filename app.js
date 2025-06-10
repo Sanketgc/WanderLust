@@ -11,6 +11,8 @@ const { listingSchema } = require("./schema.js");
 const { error } = require("console");
 const Review= require("./models/review.js");
 const { reviewSchema } = require("./schema.js");
+const { wrap } = require("module");
+const review = require("./models/review.js");
 
 
 const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
@@ -129,6 +131,17 @@ app.post("/listings/:id/reviews",
 
     res.redirect(`/listings/${listing._id}`);
 }));
+
+//DELETE REVIEW ROUTE
+app.delete("/listings/:id/reviews/:reviewId",
+     wrapAsync(async (req, res) => {
+    let {id, reviewId}= req.params;
+
+    await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+}))
 
 app.use((err, req, res, next) => {
     let {statusCode= 500, message ="Something went wrong"}  = err ;
