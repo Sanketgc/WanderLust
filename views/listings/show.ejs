@@ -1,34 +1,13 @@
+<% layout("/layout/boilerplate") %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <% layout("/layout/boilerplate") %>
-<link rel="stylesheet" href="/public/css/rating.css">
-<style>
-.starability-slot > label {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAA8CAMAAABGivqtAAAAxlBMVEUAAACZmZn2viTHuJ72viOampqampr1viSampr3vySampqdnZ34wiX1vSSampr1vSOZmZmampr1viT2vSOampr2viT2viSampr2viSampr2vyX4vyWbm5v3vSSdnZ32wSadnZ36wCWcnJyZmZn/wSr/2ySampr2vSP2viSZmZn2vSSZmZn2vST2viSampr2viSbm5ubm5uZmZn1vSSampqbm5v2vSWampqampr3vSf5wiT5vyagoKD/xCmkpKT/yCSZmZn1vSO4V2dEAAAAQHRSTlMA+vsG9fO6uqdgRSIi7+3q39XVqZWVgnJyX09HPDw1NTAwKRkYB+jh3L6+srKijY2Ef2lpYllZUU5CKigWFQ4Oneh1twAAAZlJREFUOMuV0mdzAiEQBmDgWq4YTWIvKRqT2Htv8P//VJCTGfYQZnw/3fJ4tyO76KE0m1b2fZu+U/pu4QGlA7N+Up5PIz9d+cmkbSrSNr9seT3GKeNYIyeO5j16S28exY5suK0U/QKmmeCCX6xs22hJLVkitMImxCvEs8EG3SCRCN/ViFPqnq5epIzZ07QJJvkM9Tkz1xnkmXbfSvR7f4H8AtXBkLGj74mMvjM1+VHZpAZ4LM4K/LBWEI9jwP71v1ZEQ6dyvQMf8A/1pmdZnKce/VH1iIsdte4U8VEtY23xOujxtFpWDgKbfjD2YeEhY0OzfjGeLyO/XfnNpAcmcjDwKOXRfU1IyiTRyEkaiz67pb9oJHJb9vVqKfgjLBPyF5Sq9T0KmSUhQmtiQrJGPHVi0DoSabj31G2gW3buHd0pY85lNdcCk8xlNDPXMuSyNiwl+theIb9C7RLIpKvviYy+M6H8qGwSAp6Is19+GP6KxwnggJ/kq6Jht5rnRQA4z9zyRRaXssvyqp5I6Vutv0vkpJaJtnjpz/8B19ytIayazLoAAAAASUVORK5CYII="); 
-  background-repeat: no-repeat;
-  background-position: 0 -30px;
-  cursor: pointer;
-}
-
-.starability-slot input[type="radio"] {
-  display: none;
-}
-
-.starability-slot input[type="radio"]:checked ~ label,
-.starability-slot label:hover,
-.starability-slot label:hover ~ label {
-  background-position: 0 0; /* shows filled star */
-
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/starability/starability-all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/starability/2.4.2/starability-all.min.css">
+<link rel="stylesheet" href="/public/css/rating.Css">
 </head>
 <body>
    <div class="row mt-3">
@@ -40,7 +19,7 @@
         class="card-img-top show-img" alt="listing image" />
         
         <div class="card-body">
-        <p class="card-text"><i>Onwned by <%= listing.owner.username %> </i> </p>
+        <p class="card-text"><i>Onwned by <b><%= listing.owner.username %></b> </i> </p>
         <p class="card-text"> <%= listing.description %> </p>
         <p class="card-text"> &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN"): "N/A" %>  </p>
         <p class="card-text"><%= listing.location %> </p> 
@@ -66,7 +45,7 @@
     <form 
     action="/listings/<%= listing.id  %>/reviews" 
     method="POST" novalidate class="needs-validation">
-        <div class="mb-3 mt-3">
+        <!-- <div class="mb-3 mt-3">
           <label for="rating" class="form-label">Rating</label>
           <input type="range" 
           min="1"
@@ -75,25 +54,26 @@
           name="review[rating]"
           class="form-range"
           />
-        </div> 
+        </div> -->
 
+        <label for="review[rating]" class="form-label">Rating</label>
 <fieldset class="starability-slot">
-  <legend>First rating:</legend>
-  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+  <!-- <legend >First rating:</legend> -->
+  <input type="radio"  id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
 
   <input type="radio" id="first-rate1" name="review[rating]" value="1" />
   <label for="first-rate1" title="Terrible"></label>
 
-   <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+   <input type="radio"  id="first-rate2" name="review[rating]" value="2" />
   <label for="first-rate2" title="Not good"></label>
 
-   <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+   <input type="radio"  id="first-rate3" name="review[rating]" value="3" />
   <label for="first-rate3" title="Average"></label>
 
-  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+  <input type="radio"  id="first-rate4" name="review[rating]" value="4" />
   <label for="first-rate4" title="Very good"></label>
 
-  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+  <input type="radio"  id="first-rate5" name="review[rating]" value="5" />
   <label for="first-rate5" title="Amazing"></label>
 
 </fieldset>
@@ -111,15 +91,16 @@
     </form>
     <% } %>
 
+     <br>
 <p><b>All Reviews</b></p>
 <div class="row">
     <% for(review of listing.reviews) { %> 
     <div class="card col-5 ms-2 mb-3"> 
     <div class="card-body">
-      <h6 class="card-title">@<%= review.author.username %></h6>
+      <p class="card-title">@<%= review.author.username %></p>
       <p class="card-text"><%= review.comment %></p>
        <p class="starability-result card-text" 
-       data-rating="<%= review.rating %>" >Rated: <%= review.rating %> Stars
+       data-rating= "<%= review.rating %>" >Rated: <%= review.rating %> Stars
   </p>
       <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
       <button class="btn btn-sm btn-dark">Delete</button>
