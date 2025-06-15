@@ -10,13 +10,13 @@ const listingController = require("../controller/listings.js");
 
 router.route("/")
 .get(wrapAsync(listingController.index))
-// .post(isloggedin,
-//     validateListing,
-//     wrapAsync(listingController.create));
+.post(isloggedin,
+    validateListing,
+    wrapAsync(listingController.create));
 
-.post(upload.single('listing[image][url]'),(req, res) => {
-    res.send(req.file);
-});
+// .post(upload.single('listing[image][url]'),(req, res) => {
+//     res.send(req.file);
+// });
 
 //NEW ROUTE
 router.get("/new", isloggedin, listingController.Newform);
