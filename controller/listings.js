@@ -27,7 +27,7 @@ module.exports.show =async(req, res) =>{
 
 module.exports.edit =async (req, res) => {
     let {id}= req.params;
-    console.log(id);
+    console.log(id); 
     const listing = await Listing.findById(id);
     if(!listing){
         req.flash("error", "Listing you requested for does not exist");
@@ -37,8 +37,12 @@ module.exports.edit =async (req, res) => {
 }
 
 module.exports.create = async (req, res, next) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
+    console.log(url," ",filename);
     const newListing= new Listing(req.body.listing);
     newListing.owner = req.user._id;
+    newListing.image = {url, filename};
     await newListing.save();
     req.flash("success", "new listing created");
     res.redirect("/listings");

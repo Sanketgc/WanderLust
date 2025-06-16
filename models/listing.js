@@ -1,4 +1,4 @@
-const { required } = require("joi");
+const { required, string } = require("joi");
 const mongoose = require("mongoose");
 const Schema= mongoose.Schema;
 const Review= require("./review");
@@ -42,6 +42,10 @@ owner: {
     type: Schema.Types.ObjectId, 
     ref: "User"
 },
+// category: {
+//     type: string,
+//     enum: ["mountains", "arctic", "farms", "deserts"],
+// },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) =>{
