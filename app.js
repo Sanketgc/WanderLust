@@ -16,12 +16,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-
 const listingrouter = require("./Routes/listing.js");
 const reviewRouter = require("./Routes/review.js");
 const userRouter = require("./Routes/user.js");
 
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL= 'mongodb://127.0.0.1:27017/wanderlust';
+
 main().then(() => {
     console.log("connected to db");
 })
@@ -94,5 +94,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(8080, ()=> {
-    // console.log("server is listening");
+     console.log("server is listening");
 });

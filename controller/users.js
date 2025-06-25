@@ -28,7 +28,7 @@ module.exports.GetLogin=(req, res) =>{
 }
 
 module.exports.PostLogin=async(req, res) =>{
-        req.flash("success", "Welcome back to Wanderlust! You are logged in");
+        req.flash("success", "Welcome back to StayWander! You are logged in");
         let redirecturl = res.locals.redirectUrl || "/listings"
         res.redirect( redirecturl);
 }
