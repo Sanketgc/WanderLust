@@ -20,6 +20,8 @@ router.route("/")
 //NEW ROUTE
 router.get("/new", isloggedin, listingController.Newform);
 
+//router.get("/search", wrapAsync(listingController.search));
+
 router.route("/:id")
 .put(isloggedin,
     isowner,
